@@ -16,17 +16,11 @@ const reducer = (state = 0, action) => {
 const store = createStore(reducer);
 
 //Action creators
-const inc = () => {
-    return {type: 'INC'};
-};
+const inc = () => ({type: 'INC'});
 
-const rnd = (payload) => {
-    return {type: 'RND', payload};
-};
+const rnd = (payload) => ({type: 'RND', payload});
 
-const dec = () => {
-    return {type: 'DEC'};
-};
+const dec = () => ({type: 'DEC'});
 //===================
 
 document.getElementById('inc').addEventListener('click', () => {
