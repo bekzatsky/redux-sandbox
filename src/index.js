@@ -6,9 +6,13 @@ import {inc, rnd, dec} from "./actions";
 const store = createStore(reducer);
 const {dispatch} = store;
 
-const incDispatch = () => dispatch(inc());
-const rndDispatch = (payload) => dispatch(rnd(payload));
-const decDispatch = () => dispatch(dec());
+const bindActionCreator = (creator, dispatch) => (...args) => {
+    dispatch(creator(...args));
+};
+
+const incDispatch = bindActionCreator(inc, dispatch);
+const rndDispatch = bindActionCreator(rnd, dispatch);
+const decDispatch = bindActionCreator(dec, dispatch);
 
 document.getElementById('inc').addEventListener('click', incDispatch);
 
