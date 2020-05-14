@@ -4,19 +4,20 @@ import reducer from "./reducer";
 import {inc, rnd, dec} from "./actions";
 
 const store = createStore(reducer);
+const {dispatch} = store;
 
-document.getElementById('inc').addEventListener('click', () => {
-    store.dispatch(inc());
-});
+const incDispatch = () => dispatch(inc());
+const rndDispatch = (payload) => dispatch(rnd(payload));
+const decDispatch = () => dispatch(dec());
+
+document.getElementById('inc').addEventListener('click', incDispatch);
 
 document.getElementById('rnd').addEventListener('click', () => {
     const payload = Math.floor(Math.random() * 10);
-    store.dispatch(rnd(payload));
+    rndDispatch(payload);
 });
 
-document.getElementById('dec').addEventListener('click', () => {
-    store.dispatch(dec());
-});
+document.getElementById('dec').addEventListener('click', decDispatch);
 
 const update = () => {
     document.getElementById('counter').innerHTML = store.getState();
