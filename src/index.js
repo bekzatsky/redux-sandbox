@@ -15,20 +15,31 @@ const reducer = (state = 0, action) => {
 
 const store = createStore(reducer);
 
+//Action creators
+const inc = () => {
+    return {type: 'INC'};
+};
+
+const rnd = (payload) => {
+    return {type: 'RND', payload};
+};
+
+const dec = () => {
+    return {type: 'DEC'};
+};
+//===================
+
 document.getElementById('inc').addEventListener('click', () => {
-    store.dispatch({type: 'INC'});
+    store.dispatch(inc());
 });
 
 document.getElementById('rnd').addEventListener('click', () => {
     const payload = Math.floor(Math.random() * 10);
-    store.dispatch({
-        type: 'RND',
-        payload
-    });
+    store.dispatch(rnd(payload));
 });
 
 document.getElementById('dec').addEventListener('click', () => {
-    store.dispatch({type: 'DEC'});
+    store.dispatch(dec());
 });
 
 const update = () => {
